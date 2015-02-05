@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+	<h2>All Malls</h2>
+	<h3>Total Malls: {{ objects.count }}</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Mall Name</th>
+				<th>Number of employed</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for object in objects %}
+			<tr>
+				<td>
+					<a href="{% url 'malls_solo' object.pk %}">{{ object | title }}</a>
+				</td>
+				<td>
+					{{ object.mallworker_set.count }}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+
+	
+</div>
+
+
+{% endblock %}

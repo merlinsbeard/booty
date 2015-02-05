@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="utf-8">
+<title>forms</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+{% block extrahead %}
+
+{% endblock %}
+
+</head>
+
+<body>
+<div class="container">
+	<nav>
+		<ul>
+			<li><a href="/">Index</a></li>
+			<li><a href="{% url 'workers' %}">Workers </a></li>
+			<li><a href="{% url 'malls' %}">Malls </a></li>
+			<li><a href="{% url 'agency' %}">Agencies </a></li>
+		</ul>
+	</nav>
+</div>
+{% block body %}{% endblock %}
+</body>
+</html>

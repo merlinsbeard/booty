@@ -1,0 +1,251 @@
+{% extends 'layout.html' %}
+{% block extrahead %}
+<style>
+	img{
+		max-width: 150px;
+	}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+	<h2>Main Details for {{ object.full_name | title }}</h2>
+	<img src="{{ object.biometric.image.url }}" alt="">
+	<table class="table">
+		
+		<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Employed In</td>
+				<td>
+				{% if object.mallworker %}
+				<a href="{% url 'malls_solo' object.mallworker.mall.pk %}">{{ object.mallworker.mall.mall | title }}</a>
+				{% else %}
+				None
+				{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<td>Firstname</td>
+				<td>{{ object.firstname | title }}</td>
+			</tr>
+			<tr>
+				<td>Middle Name</td>
+				<td>{{ object.middlename | title }}</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td>{{ object.lastname | title }}</td>
+			</tr>
+			<tr>
+				<td>Agency</td>
+				<td><a href="{% url 'agency_solo' object.agency.id %}">{{ object.agency }}</a></td>
+			</tr>
+			<tr>
+				<td>Date Of Birth</td>
+				<td>{{ object.date_of_birth }}</td>
+			</tr>
+			<tr>
+				<td>Age</td>
+				<td>{{ object.age }}</td>
+			</tr>
+			<tr>
+				<td>Present Address</td>
+				<td>{{ object.present_address }}</td>
+			</tr>
+			<tr>
+				<td>Sex</td>
+				<td>{{ object.sex }}</td>
+			</tr>
+			<tr>
+				<td>Height</td>
+				<td>{{ object.height }}</td>
+			</tr>
+			<tr>
+				<td>Weight</td>
+				<td>{{ object.weight }}</td>
+			</tr>
+			<tr>
+				<td>Security License Number</td>
+				<td>{{ object.security_license_number }}</td>
+			</tr>
+			<tr>
+				<td>Date Issued</td>
+				<td>{{ object.date_issued }}</td>
+			</tr>
+			<tr>
+				<td>Date of Expiration</td>
+				<td>{{ object.date_of_expiration }}</td>
+			</tr>
+			<tr>
+				<td>Marital Status</td>
+				<td>{{ object.marital_status }}</td>
+			</tr>
+			
+		</tbody>
+	</table>
+
+	<h2>Biometric Details</h2>
+	{% if object.biometric %}
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Left Pinky</th>
+				<th>Left Ring</th>
+				<th>Left Middle</th>
+				<th>Left Pointing</th>
+				<th>Left Thumb</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			
+			
+			<td><img src="{{ object.biometric.left_ring_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.left_middle_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.left_pointing_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.left_thumb.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.right_pinky_finger.url }}" alt=""></td>
+			
+			</tr>
+		</tbody>
+
+	</table>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				
+				<th>Right Pinky</th>
+				<th>Right Ring</th>
+				<th>Ring Middle</th>
+				<th>Right Pointing</th>
+				<th>Right Thumb</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<td><img src="{{ object.biometric.right_pinky_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.right_ring_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.right_middle_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.right_pointing_finger.url }}" alt=""></td>
+			<td><img src="{{ object.biometric.right_thumb.url }}" alt=""></td>
+		
+			</tr>
+		</tbody>
+
+	</table>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				
+				
+				<th>Signature</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			
+			<td><img src="{{ object.biometric.signature.url }}" alt=""></td>
+			</tr>
+		</tbody>
+
+	</table>
+	{% endif %}
+	<h2>Employment History</h2>
+	<table class="table table-bordered">
+		<thead>
+		
+			<tr>
+				<th>Company</th>
+				<th>Position</th>
+				<th>Date Started</th>
+				<th>Date Finished</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for emp in object.employment_set.all %}
+			<tr>
+				<td>{{ emp.place }}</td>
+				<td>{{ emp.position }}</td>
+				<td>{{ emp.date_started }}</td>
+				<td>{{ emp.date_finished }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2>Education</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Education Level</th>
+				<th>Date Finished</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for edu in object.school_set.all %}
+			<tr>
+				<td>{{ edu.category | title }}</td>
+				<td>{{ edu.year_graduated }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2>Family</h2>
+	{% if not object.spouse_set.all %}
+	<h2>No Spouse</h2>
+	{% else %}
+	<h3>Spouse</h3>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Spouse</th>
+				<th>Birthday</th>
+				<th>Occupation</th>
+				<th>Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for spouse in object.spouse_set.all %}
+				<tr>
+					<td>{{ spouse.spouse_name | title }}</td>
+					<td>{{ spouse.spouse_bday }}</td>
+					<td>{{ spouse.spouse_occupation }}</td>
+					<td>{{ spouse.spouse_address }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+	{% if not object.children_set.all %}
+	<h2>No Children</h2>
+	{% else %}
+	<h3>Children</h3>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Birthday</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for child in object.children_set.all %}
+			<tr>
+				<td>{{ child.name }}</td>
+				<td>{{ child.date_of_birth }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+</div>
+
+{% endblock %}

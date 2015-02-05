@@ -1,0 +1,67 @@
+AGENCY
+----------------------
+Agency - text
+
+TREASURE
+----------------------
+firstname
+middlename
+last name
+date-of-birth
+present-address
+age
+sex
+height
+weight
+security-license-number
+date-issued
+date-of-expiration
+spouse-name
+spouse-bday
+spouse-occupation
+spouse-address
+AGENCY-FK
+
+BIOMETRICS (images)
+----------------------
+TREASURE-FK
+picture
+signature
+left-pinkyfinger
+left-ring finger
+left-middle finger
+left-pointing
+left-thumb
+right-pinkyfinger
+right-ring finger
+right-middle finger
+right-pointing
+right-thumb
+
+CHILDREN
+----------------------
+TREASURE-FK
+name
+age
+
+School
+----------------------
+TREASURE-FK
+<category>
+year graduated
+
+SEMINAR
+----------------------
+TREASURE-FK
+name
+conducted-by
+date-covered
+
+Employment
+----------------------
+TREASURE-FK
+place
+position
+date started
+date finished
+

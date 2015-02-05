@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+<h2>Agency: {{ object.agency | title }}</h2>
+
+<h2>Number of workers {{ object.worker_set.count}}</h2>
+
+
+<table class="table">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>ID</th>
+			<th>Mall Working</th>
+			<th>Agency</th>
+			
+		</tr>
+		</thead>
+		<tbody>
+		
+				{% for worker in object.worker_set.all %}
+					<tr>
+				<td><a href="{% url 'workers_solo' worker.id %}">{{ worker.full_name | title }}</a></td>
+				<td>{{ worker.id }}</td>
+				<td>
+				{% if worker.mallworker %}
+				<a href="{% url 'malls_solo' worker.mallworker.mall.pk %}">{{ worker.mallworker.mall.mall | title }}</a>
+					
+				{% else %}
+				None
+				{% endif %}
+				</td>
+				<td>{{ worker.agency | title }}</td>
+				</tr>
+				{% endfor %}
+			
+		</tbody>
+	</table>
+
+</div>
+
+{% endblock %}
