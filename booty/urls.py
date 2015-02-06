@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^info/', include('worker.urls')),
     url(r'^$', 'worker.views.index', name='home'),
+    url(r'^search/', include('search.urls')),
 )

@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="content">
+<h1>Search</h1>
+<form method="get" action="">
+<input type="text" id="searchBox" class="input-medium search-query" name="q" placeholder="Search">
+<input type="submit" class="btn" value="Search" >
+</form>
+
+{% if searching %}
+	<h2>Workers</h2>
+	{% if workers %}
+		
+		<div class="container table">
+			<div class="component">
+				<h2>Total Workers Found:<p class="headvalue"> {{ workers.count }}</p></h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>ID</th>
+							<th>Mall Working</th>
+							<th>Agency</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for object in workers %}
+						<tr>
+							<td><a href="{% url 'workers_solo' object.id %}">{{ object.full_name | title }}</a></td>
+							<td>{{ object.security_license_number }}</td>
+							<td>
+							{% if object.mallworker %}
+							<a href="{% url 'malls_solo' object.mallworker.mall.pk %}">{{ object.mallworker.mall }}</a>
+								{% else %}
+								<div class="danger">None</div>
+								{% endif %}
+							</td>
+							<td><a href="{% url 'agency_solo' object.agency.id %}">{{ object.agency }}</a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div><!-- /component -->
+		</div><!-- /cont table -->
+	{% else %}
+		no workers Found
+	{% endif %}
+
+	<h2>Malls</h2>
+	{% if malls %}
+		<div class="container table">
+			<div class="component">
+				<h2>Total Malls:<p class="headvalue"> {{ malls.count }}</p></h2>
+					<table>
+						<thead class="headmall">
+							<tr>
+								<th>Mall Name</th>
+								<th>Number of Employed</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for object in malls %}
+							<tr>
+								<td class="mallworking">
+									<a href="{% url 'malls_solo' object.pk %}">{{ object | title }}</a>
+								</td>
+								<td class="mallemployed">
+									{{ object.mallworker_set.count }}
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div><!-- /component -->
+			</div><!-- /cont table -->
+		</div><!-- /content -->	
+	{% else %}
+		No malls found
+	{% endif %}
+
+	<h2>Agency</h2>
+	{% if agency %}
+	gfg
+	{%else%}
+		No Agency Found
+	{% endif %}
+{% endif %}
+{% endblock %}
