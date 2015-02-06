@@ -1,27 +1,46 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="container">
-<h2>All Agencies</h2>
-<h3>Count: {{objects.count }}</h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Employed Count</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for object in objects %}
-				<tr>
-					<td><a href="{% url 'agency_solo' object.id %}">{{ object.agency | title }}</a></td>
-					<td>{{ object.worker_set.count }}</td>
-				</tr>
-			{% endfor %}
 
-		</tbody>
-			
-	</table>
+<article class="content">
+	<div>
+		<!-- content here -->
+		<div class="inner-header">
+			<div class="inner-inner">
+				<h1>All Agencies</h1>
+			</div>
+		</div>
+		<div class="container table">
+			<div class="component">
+				<h2>Total Agencies:<p class="headvalue"> {{objects.count }}</p></h2>
+				<table>
+					<thead class="headagency">
+						<tr>
+							<th>Agency Name</th>
+							<th>Number of Employed</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for object in objects %}
+						<tr>
+							<td class="agency">
+								<a href="{% url 'agency_solo' object.id %}">{{ object.agency | title }}</a>
+							</td>
+							<td class="agencyno">
+							{{ object.worker_set.count }}
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div><!-- /component -->
+		</div><!-- /cont table -->
+	</div><!-- /content -->	
+</article>
+<div class="footer">
+	<div class="footerinside">
+		<p>© Eulisis 2015 - v1.0</p>
+	</div>
 </div>
 
 {% endblock %}

@@ -83,8 +83,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'http://192.168.1.23/booty/'
-STATIC_ROOT = '/usr/share/nginx/html/booty/'
+STATIC_URL = 'http://192.168.1.8/booty/'
+STATIC_ROOT = '/usr/share/nginx/www/booty/'
 MEDIA_URL = STATIC_URL + 'media/'
 MEDIA_ROOT = STATIC_ROOT + 'media/'
 

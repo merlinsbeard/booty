@@ -44,6 +44,7 @@ class Worker(models.Model):
     middlename              = models.CharField(max_length=150)
     lastname               = models.CharField(max_length=150)
     date_of_birth           = models.DateField()
+    place_of_birth	= models.CharField(max_length=200)
     present_address         = models.TextField()
     sex                     = models.CharField(choices=SEX_CHOICES, max_length=1)
     height                  = models.CharField(max_length=10)
@@ -55,8 +56,6 @@ class Worker(models.Model):
     agency                  = models.ForeignKey(Agency)
     date_added              = models.DateTimeField(auto_now_add=True)
     date_updated            = models.DateTimeField(auto_now=True)
-
-
 
     def __str__(self):
         return self.firstname + ' ' + self.middlename + ' ' + self.lastname

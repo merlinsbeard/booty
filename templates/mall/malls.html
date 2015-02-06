@@ -2,33 +2,46 @@
 
 {% block body %}
 
-<div class="container">
-	<h2>All Malls</h2>
-	<h3>Total Malls: {{ objects.count }}</h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Mall Name</th>
-				<th>Number of employed</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for object in objects %}
-			<tr>
-				<td>
-					<a href="{% url 'malls_solo' object.pk %}">{{ object | title }}</a>
-				</td>
-				<td>
-					{{ object.mallworker_set.count }}
-				</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-
-
-	
+<article class="content">
+	<div>
+	<!-- content here -->
+		<div class="inner-header">
+			<div class="inner-inner">
+				<h1>All Malls</h1>
+			</div>
+		</div>
+		<div class="container table">
+			<div class="component">
+				<h2>Total Malls:<p class="headvalue"> {{ objects.count }}</p></h2>
+					<table>
+						<thead class="headmall">
+							<tr>
+								<th>Mall Name</th>
+								<th>Number of Employed</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for object in objects %}
+							<tr>
+								<td class="mallworking">
+									<a href="{% url 'malls_solo' object.pk %}">{{ object | title }}</a>
+								</td>
+								<td class="mallemployed">
+									{{ object.mallworker_set.count }}
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div><!-- /component -->
+			</div><!-- /cont table -->
+		</div><!-- /content -->	
+	</div>
+</article>
+<div class="footer">
+	<div class="footerinside">
+		<p>© Eulisis 2015 - v1.0</p>
+	</div>
 </div>
 
 

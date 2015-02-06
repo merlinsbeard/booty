@@ -1,14 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="container">
-	<h1>Index</h1>
-	<ul>
-		<li><a href="{% url 'workers' %}">Workers</a></li>
-		<li><a href="{% url 'malls' %}">Malls</a></li>
-		<li><a href="{% url 'agency' %}">Agencies</a></li>
+<article class="content">
+	<div>
+		<!-- content here -->
+		<p>News</p>
+		<p><strong>Search: </strong></p>
+	</div>
+</article>
 
-	</ul>
+<div class="footer">
+	<div class="footerinside">
+		<p>© Eulisis 2015 - v1.0</p>
+	</div>
 </div>
 
 {% endblock %}
