@@ -9,6 +9,7 @@ def index(request):
 		query = request.GET['q']
 		workers = Worker.objects.filter(Q(firstname__icontains=query) | Q(lastname__icontains=query) | Q(security_license_number__icontains=query) | Q(sex__icontains=query))
 		malls = Mall.objects.filter(Q(mall__icontains=query))
+		#agencies = Agency.objects.filter(Q(agency__icontains))
 
 
 		context['hello'] = query

@@ -114,7 +114,7 @@
 
 									<tr>
 										<td class="agency">Agency</td>
-										<td><a href="{% url 'agency_solo' object.agency.id %}">SAF Agency</a></td>
+										<td><a href="{% url 'agency_solo' object.agency.id %}">{{ object.agency | title }}</a></td>
 									</tr>
 
 									<tr>
@@ -135,6 +135,7 @@
 							<h1>Biometric Details</h1>
 						</div>
 					</div>
+						Signature: <img src="{{ object.biometric.signature.url }}">
 
 					<div class="row">
 						<div class="col-xs-6 centerdiv">

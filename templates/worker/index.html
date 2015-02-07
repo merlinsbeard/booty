@@ -1,14 +1,19 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<article class="content">
-	<div>
-		<!-- content here -->
-		<p>News</p>
-		<p><strong>Search: </strong></p>
-	</div>
-</article>
+<div class="bg">
+	<div class="content">
+		<div>
+			<!-- content here -->
 
+			Search Content HERE
+		<form method="get" action="/search/">
+			<input type="text" id="searchBox" class="input-medium search-query" name="q" placeholder="Search">
+			<input type="submit" class="btn" value="Search" >
+		</form>
+		</div>
+	</div>
+</div>
 <div class="footer">
 	<div class="footerinside">
 		<p>© Eulisis 2015 - v1.0</p>

@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'worker',
     'biometric',
+    'account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,3 +90,5 @@ MEDIA_URL = STATIC_URL + 'media/'
 MEDIA_ROOT = STATIC_ROOT + 'media/'
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+LOGIN_REDIRECT_URL = '/'
